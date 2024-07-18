@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 require('dotenv').config();
-const mogoUrl=process.env.MONGO_URL || "mongodb://127.0.0.1:27017/middleware"
+const mogoUrl=process.env.MONGO_URL
 const connect = async () => {
   try {
     await mongoose.connect(mogoUrl, {

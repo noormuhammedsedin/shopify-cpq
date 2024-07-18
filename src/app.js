@@ -20,6 +20,10 @@ app.use('/submit-quote',quote);
 app.use('/convert-quote-to-order',draftOrder);
 app.use('/quote-status',quoteApproved);
 
+
+app.get("/home",(req,res)=>{
+  res.send("Welcome to middleware")
+})
 app.listen(port,()=>{
   connect();
   console.log(`Listening on port ${port}`)
