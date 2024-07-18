@@ -6,7 +6,6 @@ require('dotenv').config();
 
 router.post("/",async(req,res)=>{
   const{approvalStatus,quoteName,quoteId}=req.body;
-  console.log("Approval Status",approvalStatus);
   const pendingQuotes = await Quote.findOne({salesforceId:quoteId});
   
   [pendingQuotes].forEach(async (quote) => {
@@ -16,7 +15,7 @@ router.post("/",async(req,res)=>{
         await quote.save();
         // Create draft order in Shopify
         if(quote.platform==="Shopify"){
-          await axios.post(`http://localhost:3000/convert-quote-to-order/${quote?.salesforceId}`, {
+          await axios.post(`https://shopify-cpq-1.onrender.com/convert-quote-to-order/${quote?.salesforceId}`, {
             products: quote.products,
             customerInfo: quote.customerInfo
           });
